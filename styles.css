@@ -1,0 +1,60 @@
+/* Kann bei einbindung gelöscht werden */
+.testContainer {
+    height: 1000px;
+}
+
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+
+/* @Davler hier Klassen ersetzen */
+
+#container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin: 50px;
+    padding: 67px;
+    background-color: #212123;
+    border: 1px solid #212123;
+    border-radius: 20px;
+}
+
+#title {
+    margin: 0px;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+
+}
+
+.textTitle {
+    font-size: 35px;
+    font-weight: bold;
+    margin: 0px;
+    color: #787878;
+    
+}
+
+.textParagraph {
+    margin: 0px;
+    font-size: 20px;
+    color: #787878;
+}
+
+
+/* Hinzufügen Klassen  */
+
+.addOnScroll {
+    color: #f9fafb;
+}
