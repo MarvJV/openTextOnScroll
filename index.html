@@ -4,43 +4,51 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Open Text On Scroll</title>
+    <!--@Davler Hier werden die styles geladen. Jenachdem wie der aufbau eurer Webseite ist, kann es sein das ein In-line styles erforderlich sind-->
     <link rel="stylesheet" href="styles.css" />
-    <script src="script.js" defer></script>
   </head>
   <body>
     <!--@Davler testContainer muss gelöst werden wenn eingebunden-->
     <div class="testContainer"></div>
     <!--@Davler bitte die hier die Namen der Klassen / IDs so ersetzen das sie nicht mit bereits vorhandenen Klassen Kollidieren und die anpassung in CSS und JS nicht vergessen-->
-    <div id="container">
+    <div id="mainContainer">
       <h1 id="title">Lorem ipsum dolor sit amet</h1>
       <!--Text 1-->
       <div class="textContainer">
-        <h2 class="textTitle" id="textTitle_1">Lorem ipsum dolor sit amet</h2>
-        <p class="textParagraph" id="textParagraph_1">
+        <h2 class="textTitle fokusParagraphTitle" id="textTitle_1">
+          Lorem ipsum dolor sit amet
+        </h2>
+        <p class="textParagraph showParagraphText" id="textParagraph_1">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus cum
           fuga error placea.
         </p>
       </div>
       <!--Text 2-->
       <div class="textContainer">
-        <h2 class="textTitle" id="textTitle_2">Lorem ipsum dolor sit amet</h2>
-        <p class="textParagraph" id="textParagraph_2">
+        <h2 class="textTitle deFokusParagraphTitel" id="textTitle_2">
+          Lorem ipsum dolor sit amet
+        </h2>
+        <p class="textParagraph hideParagraphText" id="textParagraph_2">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus cum
           fuga error placea.
         </p>
       </div>
       <!--Text 3-->
       <div class="textContainer">
-        <h2 class="textTitle" id="textTitle_3">Lorem ipsum dolor sit amet</h2>
-        <p class="textParagraph" id="textParagraph_3">
+        <h2 class="textTitle deFokusParagraphTitel" id="textTitle_3">
+          Lorem ipsum dolor sit amet
+        </h2>
+        <p class="textParagraph hideParagraphText" id="textParagraph_3">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus cum
           fuga error placea.
         </p>
       </div>
       <!--Text 4-->
       <div class="textContainer">
-        <h2 class="textTitle" id="textTitle_4">Lorem ipsum dolor sit amet</h2>
-        <p class="textParagraph" id="textParagraph_4">
+        <h2 class="textTitle deFokusParagraphTitel" id="textTitle_4">
+          Lorem ipsum dolor sit amet
+        </h2>
+        <p class="textParagraph hideParagraphText" id="textParagraph_4">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus cum
           fuga error placea.
         </p>
@@ -48,5 +56,8 @@
     </div>
     <!--@Davler testContainer muss gelöst werden wenn eingebunden-->
     <div class="testContainer"></div>
+
+    <!--@Davler Hier wird das Script geladen. Jenachdem ob erfordelich, kann JS auch im HTML eingebundn werden (also nicht als extra) -->
+    <script src="script.js" defer></script>
   </body>
 </html>

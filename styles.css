@@ -1,6 +1,6 @@
 /* Kann bei einbindung gelöscht werden */
 .testContainer {
-    height: 1000px;
+    height: 2000px;
 }
 
 
@@ -13,15 +13,17 @@ body {
 
 /* @Davler hier Klassen ersetzen */
 
-#container {
+#mainContainer {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 50px;
     margin: 50px;
     padding: 67px;
     background-color: #212123;
-    border: 1px solid #212123;
     border-radius: 20px;
+
+    height: 500px;
 }
 
 #title {
@@ -52,9 +54,22 @@ body {
     color: #787878;
 }
 
+/* Dynamische Klassen */
 
-/* Hinzufügen Klassen  */
-
-.addOnScroll {
-    color: #f9fafb;
+.fokusParagraphTitle {
+    color: #fff;
 }
+
+.deFokusParagraphTitel {
+    color: #787878;
+   
+}
+.showParagraphText {
+    display: flex;
+    color: #fff;
+}
+
+.hideParagraphText {
+    display: none;
+}
+
