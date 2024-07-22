@@ -7,7 +7,7 @@ const paragraphs = document.querySelectorAll(".textParagraph");
 
 function scrollHandler() {
   const scrollPosition =
-    window.pageYOffset / (document.body.offsetHeight - window.innerHeight);
+    window.pageY / (document.body.offsetHeight - window.innerHeight);
 
   let focusedIndex = -1;
 
