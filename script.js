@@ -44,9 +44,11 @@ function mainContainerIsVisibleHandler(entries) {
     const isVisible = entry.isIntersecting;
     if (isVisible) {
       window.addEventListener("scroll", scrollHandler);
+
       console.log("Main Container is visible");
     } else {
       window.removeEventListener("scroll", scrollHandler);
+
       console.log("Main Container is not visible");
     }
   });
@@ -55,7 +57,7 @@ function mainContainerIsVisibleHandler(entries) {
 const options = {
   root: null,
   rootMargin: "0px",
-  threshold: 0.25,
+  threshold: 0.8,
 };
 
 const observer = new IntersectionObserver(

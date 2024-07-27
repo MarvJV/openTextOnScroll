@@ -18,6 +18,8 @@
     padding: 67px;
     background-color: #212123;
     border-radius: 20px;
+
+    height: 600px;
   }
   
   #title {
@@ -57,5 +59,11 @@
   .showParagraphText {
     display: block;
     color: #fff;
+  }
+
+  .sticky {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
   }
   
