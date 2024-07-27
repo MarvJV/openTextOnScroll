@@ -1,5 +1,3 @@
-console.log("Hello, world!");
-
 const mainContainer = document.querySelector("#mainContainer");
 const textContainers = document.querySelectorAll(".textContainer");
 const titles = document.querySelectorAll(".textTitle");
@@ -8,6 +6,10 @@ const paragraphs = document.querySelectorAll(".textParagraph");
 let isMainContainerVisible = false;
 let defaultFocusedIndex = 0;
 
+/**
+ * Function to set default focus based on the scroll position of the window.
+ * Adds or removes focus classes to titles and paragraphs based on their index.
+ */
 function setDefaultFocus() {
   const scrollTop = window.scrollY;
   const scrollBottom = scrollTop + window.innerHeight;
@@ -18,7 +20,7 @@ function setDefaultFocus() {
   } else if (scrollBottom >= documentHeight) {
     defaultFocusedIndex = textContainers.length - 1;
   } else {
-    return; // Do nothing if not at the top or bottom
+    return;
   }
 
   titles.forEach((title, index) => {
@@ -38,6 +40,10 @@ function setDefaultFocus() {
   });
 }
 
+/**
+ * Function to clear focus classes from all titles and paragraphs.
+ * Ensures that no titles or paragraphs have the focus classes applied.
+ */
 function clearFocus() {
   titles.forEach((title) => {
     title.classList.remove("fokusParagraphTitle");
@@ -47,6 +53,11 @@ function clearFocus() {
   });
 }
 
+/**
+ * Function to handle scroll events and determine the focused text container.
+ * Calculates the midpoint of the viewport and determines which container is in focus.
+ * Adds or removes focus classes based on the container in view.
+ */
 function scrollHandler() {
   const viewportHeight = window.innerHeight;
   const midViewport = window.scrollY + viewportHeight / 2;
@@ -69,12 +80,18 @@ function scrollHandler() {
   }
 }
 
+/**
+ * Function to handle visibility changes of the main container using Intersection Observer.
+ * Adds or removes scroll event listeners based on the visibility of the main container.
+ * When the main container is visible, it adds the scroll event listener and handles the scroll event.
+ * When the main container is not visible, it removes the scroll event listener.
+ */
 function mainContainerIsVisibleHandler(entries) {
   entries.forEach((entry) => {
     isMainContainerVisible = entry.isIntersecting;
     if (isMainContainerVisible) {
       window.addEventListener("scroll", scrollHandler);
-      scrollHandler(); // Call scrollHandler immediately to update on visibility change
+      scrollHandler();
       console.log("Main Container is visible");
     } else {
       window.removeEventListener("scroll", scrollHandler);
@@ -88,7 +105,6 @@ const options = {
   rootMargin: "0px",
   threshold: 0.5,
 };
-
 const observer = new IntersectionObserver(
   mainContainerIsVisibleHandler,
   options
