@@ -33,6 +33,8 @@
     flex-direction: column;
     justify-content: center;
     gap: 20px;
+
+    height: 90px;
   }
   
   .textTitle {

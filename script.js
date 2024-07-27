@@ -5,25 +5,24 @@ const textContainers = document.querySelectorAll(".textContainer");
 const titles = document.querySelectorAll(".textTitle");
 const paragraphs = document.querySelectorAll(".textParagraph");
 
-function scrollHandler() {
-  const scrollPosition =
-    window.pageYOffset / (document.body.offsetHeight - window.innerHeight);
+let isMainContainerVisible = false;
+let defaultFocusedIndex = 0;
 
-  let focusedIndex = -1;
+function setDefaultFocus() {
+  const scrollTop = window.scrollY;
+  const scrollBottom = scrollTop + window.innerHeight;
+  const documentHeight = document.body.offsetHeight;
 
-  textContainers.forEach((container, index) => {
-    const containerPosition = container.offsetTop / document.body.offsetHeight;
-
-    if (
-      scrollPosition >= containerPosition - 0.1 &&
-      scrollPosition <= containerPosition + 0.1
-    ) {
-      focusedIndex = index;
-    }
-  });
+  if (scrollTop === 0) {
+    defaultFocusedIndex = 0;
+  } else if (scrollBottom >= documentHeight) {
+    defaultFocusedIndex = textContainers.length - 1;
+  } else {
+    return; // Do nothing if not at the top or bottom
+  }
 
   titles.forEach((title, index) => {
-    if (index === focusedIndex) {
+    if (index === defaultFocusedIndex) {
       title.classList.add("fokusParagraphTitle");
     } else {
       title.classList.remove("fokusParagraphTitle");
@@ -31,7 +30,7 @@ function scrollHandler() {
   });
 
   paragraphs.forEach((paragraph, index) => {
-    if (index === focusedIndex) {
+    if (index === defaultFocusedIndex) {
       paragraph.classList.add("showParagraphText");
     } else {
       paragraph.classList.remove("showParagraphText");
@@ -39,16 +38,46 @@ function scrollHandler() {
   });
 }
 
+function clearFocus() {
+  titles.forEach((title) => {
+    title.classList.remove("fokusParagraphTitle");
+  });
+  paragraphs.forEach((paragraph) => {
+    paragraph.classList.remove("showParagraphText");
+  });
+}
+
+function scrollHandler() {
+  const viewportHeight = window.innerHeight;
+  const midViewport = window.scrollY + viewportHeight / 2;
+
+  let focusedIndex = -1;
+
+  textContainers.forEach((container, index) => {
+    const containerTop = container.getBoundingClientRect().top + window.scrollY;
+    const containerBottom = containerTop + container.offsetHeight;
+
+    if (midViewport >= containerTop && midViewport <= containerBottom) {
+      focusedIndex = index;
+    }
+  });
+
+  if (focusedIndex !== -1) {
+    clearFocus();
+    titles[focusedIndex].classList.add("fokusParagraphTitle");
+    paragraphs[focusedIndex].classList.add("showParagraphText");
+  }
+}
+
 function mainContainerIsVisibleHandler(entries) {
   entries.forEach((entry) => {
-    const isVisible = entry.isIntersecting;
-    if (isVisible) {
+    isMainContainerVisible = entry.isIntersecting;
+    if (isMainContainerVisible) {
       window.addEventListener("scroll", scrollHandler);
-
+      scrollHandler(); // Call scrollHandler immediately to update on visibility change
       console.log("Main Container is visible");
     } else {
       window.removeEventListener("scroll", scrollHandler);
-
       console.log("Main Container is not visible");
     }
   });
@@ -57,7 +86,7 @@ function mainContainerIsVisibleHandler(entries) {
 const options = {
   root: null,
   rootMargin: "0px",
-  threshold: 0.8,
+  threshold: 0.5,
 };
 
 const observer = new IntersectionObserver(
@@ -65,3 +94,13 @@ const observer = new IntersectionObserver(
   options
 );
 observer.observe(mainContainer);
+
+window.addEventListener("load", () => {
+  setDefaultFocus();
+});
+
+window.addEventListener("scroll", () => {
+  if (!isMainContainerVisible) {
+    setDefaultFocus();
+  }
+});
